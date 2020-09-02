@@ -27,7 +27,7 @@
 #include "cgatools/core.hpp"
 #include "cgatools/util/Exception.hpp"
 #include "cgatools/util/Md5.hpp"
-#include <boost/detail/endian.hpp>
+#include <boost/endian.hpp>
 #include <stdio.h>
 #include <string.h>
 
