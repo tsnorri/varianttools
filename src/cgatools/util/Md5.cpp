@@ -27,7 +27,7 @@
 #include "cgatools/core.hpp"
 #include "cgatools/util/Exception.hpp"
 #include "cgatools/util/Md5.hpp"
-#include <boost/endian.hpp>
+#include <boost/predef.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -68,9 +68,9 @@ namespace cgatools { namespace util {
         return 0 == memcmp(lhs.data(), rhs.data(), lhs.size());
     }
 
-#if defined(BOOST_LITTLE_ENDIAN)
+#if defined(BOOST_ENDIAN_LITTLE_BYTE)
     #define byteReverse(buf, len) (void(0)) /* Nothing */
-#elif defined(BOOST_BIG_ENDIAN)
+#elif defined(BOOST_ENDIAN_BIG_BYTE)
     /*
      * Note: this code is harmless on little-endian machines.
      */
@@ -85,7 +85,7 @@ namespace cgatools { namespace util {
             } while (--longs);
         }
 #else
-    #error failed to detect byte order
+    #error failed to detect byte order or the byte order was unsupported
 #endif
 
     Md5Context::Md5Context()
